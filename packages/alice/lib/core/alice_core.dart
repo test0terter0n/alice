@@ -43,7 +43,7 @@ class AliceCore {
       );
     }
     if (_configuration.showInspectorOnShake) {
-      if (OperatingSystem.isAndroid || OperatingSystem.isMacOS) {
+      if (OperatingSystem.isAndroid || OperatingSystem.isIOS) {
         _shakeDetector = ShakeDetector.autoStart(
           onPhoneShake: navigateToCallListScreen,
           shakeThresholdGravity: 4,
@@ -144,8 +144,9 @@ class AliceCore {
 
   /// Subscribes to storage for call changes.
   void _subscribeToCallChanges() {
-    _callsSubscription =
-        _configuration.aliceStorage.callsStream.listen(_onCallsChanged);
+    _callsSubscription = _configuration.aliceStorage.callsStream.listen(
+      _onCallsChanged,
+    );
   }
 
   /// Unsubscribes storage for call changes.
